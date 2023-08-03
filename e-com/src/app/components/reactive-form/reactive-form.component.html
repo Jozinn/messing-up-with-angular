@@ -1,0 +1,42 @@
+<div class="form">
+    <form [formGroup]="productFrom" (ngSubmit)="onSubmit()">
+        <div class="product-name">
+            <input type="text"
+                    placeholder="Product Name"
+                    name="productName"
+                    formControlName="name">
+            <div *ngIf="productFrom.get('name')?.invalid &&
+                        productFrom.get('name')?.dirty">
+                Name is required        
+            </div>
+        </div>
+        <div class="product-price">
+            <input type="number"
+                    placeholder="Product Price"
+                    name="productPrice"
+                    formControlName="price">
+            <div *ngIf="productFrom.get('price')?.invalid && productFrom.get('price')?.dirty">
+                <div *ngIf="productFrom.get('price')?.errors">
+                    Price is required and must be at least 1 
+                </div>
+            </div>
+        </div>
+        <div class="product-img">
+            <input type="text"
+                    placeholder="image url"
+                    name="imageUrl"
+                    formControlName="imageUrl">
+            <div *ngIf="productFrom.get('imageUrl')?.invalid &&
+                        productFrom.get('imageUrl')?.dirty">
+                Image url is required and has to match following formats: .jpg, .jpeg, .png
+            </div>
+        </div>
+        <div class="is-on-sale">
+            <input type="checkbox"
+                    value="is on sale?"
+                    name="isOnSale"
+                    formControlName="isOnSale">
+        </div>
+        <button type="submit">Create</button>
+    </form>
+</div>

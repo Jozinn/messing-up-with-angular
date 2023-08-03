@@ -1,0 +1,35 @@
+<div class="product-form">
+    <form (ngSubmit)="createProduct(productForm)" #productForm="ngForm">
+        <div class="product-name">
+            <label for="productName">Name: </label>
+            <input type="text"
+                    required
+                    minlength="2"
+                    name="productName"
+                    #productName="ngModel"
+                    [(ngModel)]="product.name">
+        </div>
+        <div *ngIf="productName.dirty && productName.invalid">
+            <div *ngIf="productName.errors && productName.errors['required']">
+                Product Name is required.
+            </div>
+            <div *ngIf="productName.errors && productName.errors['minlength']">
+                Product Name must be at least 2 characters long
+            </div>
+        </div>
+        <div class="product-price">
+            <label for="productPrice">Price: </label>
+            <input type="number"
+                    required
+                    name="productPrice"
+                    #productPrice="ngModel"
+                    [(ngModel)]="product.price">
+        </div>
+        <div *ngIf="productPrice.dirty && productPrice.invalid">
+            <div *ngIf="productPrice.errors && productPrice.errors['required']">
+                Product Price is required.
+            </div>
+        </div>
+        <button type="submit">Create</button>
+    </form>
+</div>
